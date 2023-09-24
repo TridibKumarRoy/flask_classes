@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/flask_class_2023'
@@ -11,7 +12,7 @@ class Contact(db.Model):
     email = db.Column(db.String(30))
     phone = db.Column(db.String(10))
     message = db.Column(db.String(100))
-    date = db.Column(db.String(120), nullable=True)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
     
 
 @app.route("/")
