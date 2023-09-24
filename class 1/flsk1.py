@@ -11,7 +11,7 @@ class Contact(db.Model):
     email = db.Column(db.String(30))
     phone = db.Column(db.String(10))
     message = db.Column(db.String(100))
-    date = db.Column(db.String(120))
+    date = db.Column(db.String(120), nullable=True)
     
 
 @app.route("/")
