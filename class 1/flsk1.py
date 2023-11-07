@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import json
+
+with open('config.json','r') as c:
+    params = json.load(c)["params"]
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/flask_class_2023'
+app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
 db = SQLAlchemy(app)
 
 class Contact(db.Model):
@@ -17,11 +21,11 @@ class Contact(db.Model):
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('index.html', p = params)
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template('about.html', p = params)
 
 @app.route("/contact", methods =['GET','POST'])
 def contact():
@@ -34,11 +38,11 @@ def contact():
         entry = Contact(name = name, email=email_add,phone=ph_no,message=msg)
         db.session.add(entry)
         db.session.commit()
-    return render_template('contact.html')
+    return render_template('contact.html', p = params)
 
 @app.route("/post")
 def post():
-    return render_template('post.html')
+    return render_template('post.html', p = params)
 
 
 app.run(debug = True)

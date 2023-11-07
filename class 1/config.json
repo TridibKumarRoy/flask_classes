@@ -1,0 +1,14 @@
+{
+    "params":
+    {
+        "local_server":"True",
+        "local_uri":"mysql://root:@localhost/flask_class_2023",
+        "production_uri":"mysql://root:@localhost/flask_class_2023",
+        "fb_url":"https://facebook.com/tridib",
+        "tw_url":"https://twitter.com/tridib",
+        "gh_url":"https://github.com/tridib",
+        "mail_id":"tridib@gmail.com",
+        "password":"12345",
+        "site_name":"Clean Blog"
+    }
+}
